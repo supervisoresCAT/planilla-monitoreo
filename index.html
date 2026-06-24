@@ -2,108 +2,92 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Monitoreo CAT">
 <meta name="theme-color" content="#2d2a8a">
-<title>Monitoreo CAT — Jerárquicos Salud v1782302367</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Monitoreo CAT</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{-webkit-text-size-adjust:100%;font-size:14px}
-body{font-family:-apple-system,"Plus Jakarta Sans",sans-serif;background:#f7f8fc;color:#1c2040;padding-bottom:90px;-webkit-overflow-scrolling:touch}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,"Plus Jakarta Sans",sans-serif;background:#f7f8fc;color:#1c2040;padding-bottom:90px}
 
-/* HEADER */
-.hdr{background:linear-gradient(135deg,#2d2a8a 0%,#3d3aaa 60%,#1a6b7c 100%);
-  height:56px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(45,42,138,.4)}
+.hdr{background:linear-gradient(135deg,#2d2a8a,#3d3aaa 60%,#1a6b7c);height:56px;padding:0 16px;
+  display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;
+  box-shadow:0 2px 12px rgba(45,42,138,.4)}
 .hdr-l{display:flex;align-items:center;gap:10px}
 .hdr-logo{height:28px;filter:brightness(10)}
-.logo-txt{font-size:15px;font-weight:800;color:white;display:none}
-.logo-txt span{color:#7df0e0}
+.logo-fb{font-size:15px;font-weight:800;color:white;display:none}
+.logo-fb span{color:#7df0e0}
 .hdr-badge{background:rgba(255,255,255,.18);color:white;font-size:11px;font-weight:600;
   padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.25)}
 
-/* CANAL BAR */
 .cbar{background:white;border-bottom:1px solid #dde0ed;padding:10px 12px;
-  overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;display:flex;align-items:center;gap:8px}
+  overflow-x:auto;white-space:nowrap;display:flex;align-items:center;gap:8px}
 .cbar::-webkit-scrollbar{display:none}
 .clbl{font-size:10px;font-weight:700;color:#9298b5;text-transform:uppercase;letter-spacing:.06em;flex-shrink:0}
-.ctab{display:inline-block;padding:8px 13px;margin-right:5px;font-size:13px;font-family:inherit;
-  font-weight:600;border:1.5px solid #dde0ed;border-radius:20px;background:white;color:#717899;
-  cursor:pointer;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.ctab{display:inline-block;padding:8px 13px;font-size:13px;font-family:inherit;font-weight:600;
+  border:1.5px solid #dde0ed;border-radius:20px;background:white;color:#717899;
+  cursor:pointer;-webkit-user-select:none;user-select:none;touch-action:manipulation;margin-right:5px}
 .ctab.active{background:#2d2a8a;color:white;border-color:#2d2a8a}
 
-/* MAIN */
 .main{padding:12px 12px 0;max-width:860px;margin:0 auto}
 @media(min-width:700px){.main{padding:20px 20px 0}}
 
-/* CARD */
 .card{background:white;border:1px solid #dde0ed;border-radius:14px;padding:16px;
   margin-bottom:12px;box-shadow:0 2px 8px rgba(45,42,138,.07)}
-@media(min-width:700px){.card{padding:20px 24px;border-radius:18px}}
+@media(min-width:700px){.card{padding:20px 24px}}
 .chdr{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #eef0f7}
 .cico{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
 .cico.p{background:#eeedfb}.cico.g{background:#e0f7f3}
 .cttl{font-size:13px;font-weight:700}
 
-/* FIELDS */
 .flbl{display:block;font-size:10px;font-weight:700;color:#9298b5;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
 .mb10{margin-bottom:10px}
 .r2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.r3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .r4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px}
-@media(max-width:400px){.r3{grid-template-columns:1fr 1fr}}
 
 input[type=text],input[type=date],textarea{
   display:block;width:100%;padding:11px 12px;font-size:16px;font-family:inherit;
   border:1.5px solid #dde0ed;border-radius:10px;background:white;color:#1c2040;
   -webkit-appearance:none;appearance:none;outline:none}
-input:focus,textarea:focus{border-color:#4845b0;box-shadow:0 0 0 3px rgba(72,69,176,.12)}
+input:focus,textarea:focus{border-color:#4845b0}
 textarea{resize:vertical;min-height:68px;line-height:1.6}
 @media(min-width:700px){input[type=text],input[type=date],textarea{font-size:13px;padding:9px 12px}}
 
-/* MEDIO */
 .medio-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px}
 .mbtn{padding:10px 14px;font-size:13px;font-family:inherit;font-weight:600;
   border:1.5px solid #dde0ed;border-radius:20px;background:white;color:#717899;
   cursor:pointer;min-height:44px;-webkit-user-select:none;touch-action:manipulation}
 .mbtn.active{background:#2d2a8a;color:white;border-color:#2d2a8a}
 
-/* LEGEND */
 .legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
 .li{display:flex;align-items:center;gap:4px;font-size:11px;color:#717899}
 .ld{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
 
-/* DESKTOP TABLE */
+/* Desktop table - hidden on mobile */
 .dtbl{display:none}
-@media(min-width:700px){
-  .dtbl{display:block;overflow-x:auto;border-radius:10px;border:1px solid #dde0ed}
-  .mtbl{display:none!important}
-}
+@media(min-width:700px){.dtbl{display:block;overflow-x:auto;border-radius:10px;border:1px solid #dde0ed}}
 table{width:100%;border-collapse:collapse;font-size:12px}
 thead tr{background:linear-gradient(90deg,#2d2a8a,#4845b0)}
 thead th{color:rgba(255,255,255,.92);font-size:10px;font-weight:700;text-transform:uppercase;
   letter-spacing:.07em;padding:11px 10px;text-align:left;white-space:nowrap}
 thead th.tc{text-align:center;width:62px}
-tbody tr{transition:background .1s}
-tbody tr:hover{background:#f6f5fd}
 tbody tr.crow{background:#f5f4fc}
+tbody tr:hover{background:#f6f5fd}
 tbody td{padding:8px 10px;border-bottom:1px solid #eef0f7;vertical-align:middle}
 tbody tr:last-child td{border-bottom:none}
-.clbl-d{font-size:10px;font-weight:800;color:#2d2a8a;text-transform:uppercase;letter-spacing:.02em}
+.clbl-d{font-size:10px;font-weight:800;color:#2d2a8a;text-transform:uppercase}
 .iname{font-size:12px;color:#555e82;line-height:1.4}
-.sc{width:58px;text-align:center;padding:5px 2px;font-size:13px;font-family:monospace;font-weight:600;
-  border:1.5px solid #dde0ed;border-radius:8px;background:white;color:#1c2040;
+select.sc{width:58px;text-align:center;padding:5px 2px;font-size:13px;font-family:monospace;
+  font-weight:600;border:1.5px solid #dde0ed;border-radius:8px;background:white;color:#1c2040;
   outline:none;cursor:pointer;display:block;margin:0 auto}
 .prc{text-align:center;font-family:monospace;font-weight:700;font-size:13px}
 
-/* MOBILE INDICATOR CARDS */
+/* Mobile cards - hidden on desktop */
 .mtbl{display:block}
+@media(min-width:700px){.mtbl{display:none}}
 .cat-lbl{font-size:10px;font-weight:800;color:#2d2a8a;text-transform:uppercase;letter-spacing:.07em;
   padding:7px 10px;background:#eeedfb;border-radius:8px 8px 0 0;border:1px solid #dde0ed;border-bottom:none;margin-top:8px}
 .icard{border:1px solid #dde0ed;background:white;padding:10px}
@@ -114,42 +98,36 @@ tbody tr:last-child td{border-bottom:none}
 .slbl{font-size:9px;font-weight:700;color:#9298b5;text-transform:uppercase}
 .scol select{width:100%;padding:7px 0;font-size:16px;font-family:monospace;font-weight:600;
   border:1.5px solid #dde0ed;border-radius:8px;background:white;color:#1c2040;
-  text-align:center;outline:none;-webkit-appearance:none;appearance:none;cursor:pointer}
+  text-align:center;outline:none;cursor:pointer}
 .prcol{flex:0 0 44px;display:flex;flex-direction:column;align-items:center;gap:2px}
 .prlbl{font-size:9px;font-weight:700;color:#9298b5;text-transform:uppercase}
 .prval{font-size:15px;font-family:monospace;font-weight:700;color:#c4c9de}
 
-/* TOTALS */
 .tgrid{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .met{flex:1;min-width:calc(33% - 8px);background:#f7f8fc;border:1.5px solid #dde0ed;
   border-radius:10px;padding:10px 6px;text-align:center}
-.met .ml{font-size:9px;font-weight:700;color:#9298b5;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:3px}
+.met .ml{font-size:9px;font-weight:700;color:#9298b5;text-transform:uppercase;display:block;margin-bottom:3px}
 .met .mv{font-size:18px;font-weight:700;color:#1c2040}
 .met.nota{background:linear-gradient(135deg,#2d2a8a,#4845b0);border-color:#2d2a8a;flex:0 0 calc(66% + 4px)}
 .met.nota .ml{color:rgba(255,255,255,.6)}.met.nota .mv{color:white;font-size:20px}
-@media(min-width:700px){.tgrid{grid-template-columns:repeat(5,1fr);display:grid}
-  .met{min-width:0}.met.nota{flex:unset}}
+@media(min-width:700px){.tgrid{display:grid;grid-template-columns:repeat(5,1fr)}.met.nota{flex:unset}}
 
-/* PROGRESS */
 .pwrap{margin-top:12px}
-.plbl{display:flex;justify-content:space-between;font-size:11px;color:#9298b5;margin-bottom:5px;font-weight:500}
+.plbl{display:flex;justify-content:space-between;font-size:11px;color:#9298b5;margin-bottom:5px}
 .prog{height:8px;border-radius:4px;background:#dde0ed;overflow:hidden}
 .pf{height:8px;border-radius:4px;width:0%;background:#e03e52;transition:width .4s,background .3s}
 
-/* NC BUTTONS */
 .ncgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
 .ncbtn{padding:14px 10px;font-size:13px;font-family:inherit;font-weight:600;
   border:2px solid #dde0ed;border-radius:12px;cursor:pointer;background:white;color:#555e82;
   text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px;
-  min-height:60px;justify-content:center;line-height:1.2;
-  -webkit-user-select:none;touch-action:manipulation}
+  min-height:60px;justify-content:center;-webkit-user-select:none;touch-action:manipulation}
 .ncemoji{font-size:20px}
 .ncbtn.snm{background:#e03e52;color:white;border-color:#e03e52}
-.ncbtn.sb {background:#c47a0a;color:white;border-color:#c47a0a}
+.ncbtn.sb{background:#c47a0a;color:white;border-color:#c47a0a}
 .ncbtn.smb{background:#00b89c;color:white;border-color:#00b89c}
 .ncbtn.sex{background:#2d2a8a;color:white;border-color:#2d2a8a}
 
-/* CONDUCTAS */
 .citem,.ritem{padding:12px 0;border-bottom:1px solid #eef0f7}
 .citem:last-child,.ritem:last-child{border-bottom:none}
 .ctop{display:flex;gap:10px;margin-bottom:8px}
@@ -165,31 +143,26 @@ tbody tr:last-child td{border-bottom:none}
 .cobs{display:block;width:100%;padding:11px;font-size:16px;font-family:inherit;
   border:1.5px solid #dde0ed;border-radius:8px;background:#f7f8fc;color:#1c2040;
   outline:none;resize:none;min-height:52px;line-height:1.5;-webkit-appearance:none}
-.cobs:focus{border-color:#4845b0;box-shadow:0 0 0 3px rgba(72,69,176,.12);background:white}
 @media(min-width:700px){.cobs{font-size:13px}}
 
-/* BUTTONS */
-.brow{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.brow{display:flex;gap:10px;margin-top:20px}
 .btn{padding:11px 20px;font-size:13px;font-family:inherit;font-weight:600;
   border:1.5px solid #dde0ed;border-radius:12px;cursor:pointer;background:white;color:#1c2040;
   display:flex;align-items:center;gap:7px;min-height:44px;touch-action:manipulation}
-.btn:hover{background:#eef0f7}
 .btn-p{background:linear-gradient(135deg,#2d2a8a,#4845b0);color:white;border-color:#2d2a8a;
   box-shadow:0 3px 10px rgba(45,42,138,.3)}
-.btn-p:hover{background:linear-gradient(135deg,#231f70,#3a37a0)}
 
-/* STICKY (mobile only) */
-.sticky{display:none}
 @media(max-width:699px){
+  .brow{display:none}
   .sticky{display:flex;position:fixed;bottom:0;left:0;right:0;background:white;
     border-top:1px solid #dde0ed;padding:12px 14px;gap:8px;z-index:99;
     box-shadow:0 -3px 16px rgba(45,42,138,.12);
     padding-bottom:calc(12px + env(safe-area-inset-bottom))}
-  .brow{display:none}
 }
+@media(min-width:700px){.sticky{display:none}}
 .spdf{flex:1;padding:13px 16px;font-size:14px;font-family:inherit;font-weight:700;
   background:linear-gradient(135deg,#2d2a8a,#4845b0);color:white;border:none;border-radius:12px;
-  cursor:pointer;min-height:50px;box-shadow:0 3px 10px rgba(45,42,138,.3);touch-action:manipulation}
+  cursor:pointer;min-height:50px;touch-action:manipulation}
 .sclr{width:52px;min-height:50px;border:1.5px solid #dde0ed;border-radius:12px;
   background:white;cursor:pointer;font-size:18px;touch-action:manipulation}
 </style>
@@ -199,8 +172,8 @@ tbody tr:last-child td{border-bottom:none}
 <header class="hdr">
   <div class="hdr-l">
     <img class="hdr-logo" src="https://jerarquicos.com/wp-content/uploads/2024/01/jerarquicos-logo.svg" alt="JS"
-      onerror="this.style.display='none';document.getElementById('ltxt').style.display='block'">
-    <span id="ltxt" class="logo-txt" style="display:none">Jerárquicos <span>Salud</span></span>
+      onerror="this.style.display='none';document.getElementById('lfb').style.display='block'">
+    <span id="lfb" class="logo-fb" style="display:none">Jerárquicos <span>Salud</span></span>
   </div>
   <span class="hdr-badge">📋 Monitoreo CAT</span>
 </header>
@@ -275,20 +248,19 @@ tbody tr:last-child td{border-bottom:none}
     </div>
   </div>
 
-  <!-- SEMESTRAL RUBRICS -->
-  <div class="card sem-rubric" style="display:none">
+  <div class="card sem-rubric" id="rcard0" style="display:none">
     <div class="chdr"><div class="cico p">🤝</div><span class="cttl">Protocolos de cortesía</span></div>
     <div id="rubList0"></div>
   </div>
-  <div class="card sem-rubric" style="display:none">
+  <div class="card sem-rubric" id="rcard1" style="display:none">
     <div class="chdr"><div class="cico p">✍️</div><span class="cttl">Comunicación escrita — Redacción y fuente</span></div>
     <div id="rubList1"></div>
   </div>
-  <div class="card sem-rubric" style="display:none">
+  <div class="card sem-rubric" id="rcard2" style="display:none">
     <div class="chdr"><div class="cico p">🧠</div><span class="cttl">Conocimiento — Sistema, herramientas y teórico</span></div>
     <div id="rubList2"></div>
   </div>
-  <div class="card sem-rubric" style="display:none">
+  <div class="card sem-rubric" id="rcard3" style="display:none">
     <div class="chdr"><div class="cico p">📞</div><span class="cttl">Efectividad en comunicación con el socio</span></div>
     <div id="rubList3"></div>
   </div>
@@ -302,7 +274,7 @@ tbody tr:last-child td{border-bottom:none}
     <div class="chdr"><div class="cico p">💬</div><span class="cttl">Observaciones</span></div>
     <div class="mb10"><span class="flbl">Fortalezas</span><textarea id="fort" placeholder="Aspectos positivos..."></textarea></div>
     <div class="mb10"><span class="flbl">Oportunidades de mejora</span><textarea id="mej" placeholder="Puntos a trabajar..."></textarea></div>
-    <div id="objField" style="display:none"><span class="flbl">Objetivos planteados</span><textarea id="obj" placeholder="Objetivos acordados para el próximo período..."></textarea></div>
+    <div id="objField" style="display:none"><span class="flbl">Objetivos planteados</span><textarea id="obj" placeholder="Objetivos acordados..."></textarea></div>
   </div>
 
   <div class="card">
@@ -329,30 +301,31 @@ tbody tr:last-child td{border-bottom:none}
 </div>
 
 <script>
-var CATS={
-  telefonica:[
-    {cat:"Protocolo",items:["Bienvenida / Saludo inicial","Cierre / Saludo final","Identifica socio / prestador","Personalizacion","Ofrecimiento de ayuda extra o adicional"]},
-    {cat:"Conocimiento",items:["Identifica consulta / reclamo","Indagacion","Uso del sistema","Uso de herramientas de informacion","Brinda informacion precisa y pertinente"]},
-    {cat:"Efectividad",items:["Manejo de tiempos","Actualizacion de datos","Manejo de situac. complejas / socios dificiles","Requiere intervencion con otro Dto.","Efectividad de dicha comunicacion","Registro y redaccion de consulta / reclamo"]}
+// ── DATOS ──────────────────────────────────────────────────────────────────
+var CATS = {
+  telefonica: [
+    {cat:"Protocolo", items:["Bienvenida / Saludo inicial","Cierre / Saludo final","Identifica socio / prestador","Personalizacion","Ofrecimiento de ayuda extra o adicional"]},
+    {cat:"Conocimiento", items:["Identifica consulta / reclamo","Indagacion","Uso del sistema","Uso de herramientas de informacion","Brinda informacion precisa y pertinente"]},
+    {cat:"Efectividad", items:["Manejo de tiempos","Actualizacion de datos","Manejo de situac. complejas / socios dificiles","Requiere intervencion con otro Dto.","Efectividad de dicha comunicacion","Registro y redaccion de consulta / reclamo"]}
   ],
-  digital:[
-    {cat:"Comunicacion escrita",items:["Lenguaje / estructura de oracion clara y concisa","Gramatica, ortografia y puntuacion correctas","Adapta plantilla / speech","Asienta consulta / reclamo adjuntando gestion y cambia modo de respuesta"]},
-    {cat:"WhatsApp",items:["Lectura y comprension de conversacion","Correcta y rapida finalizacion de conversaciones"]}
+  digital: [
+    {cat:"Comunicacion escrita", items:["Lenguaje / estructura de oracion clara y concisa","Gramatica, ortografia y puntuacion correctas","Adapta plantilla / speech","Asienta consulta / reclamo adjuntando gestion y cambia modo de respuesta"]},
+    {cat:"WhatsApp", items:["Lectura y comprension de conversacion","Correcta y rapida finalizacion de conversaciones"]}
   ],
-  semestral:[
-    {cat:"Protocolo",items:["Bienvenida / Saludo inicial","Cierre / Saludo final","Identifica socio / prestador","Personalizacion","Ofrecimiento de ayuda extra o adicional"]},
-    {cat:"Conocimiento",items:["Identifica consulta / reclamo","Indagacion","Uso del sistema","Uso de herramientas de informacion","Brinda informacion precisa y pertinente"]},
-    {cat:"Efectividad",items:["Manejo de tiempos","Actualizacion de datos","Manejo de situac. complejas / socios dificiles","Requiere intervencion con otro Dto.","Efectividad de dicha comunicacion","Registro y redaccion de consulta / reclamo"]}
+  semestral: [
+    {cat:"Protocolo", items:["Bienvenida / Saludo inicial","Cierre / Saludo final","Identifica socio / prestador","Personalizacion","Ofrecimiento de ayuda extra o adicional"]},
+    {cat:"Conocimiento", items:["Identifica consulta / reclamo","Indagacion","Uso del sistema","Uso de herramientas de informacion","Brinda informacion precisa y pertinente"]},
+    {cat:"Efectividad", items:["Manejo de tiempos","Actualizacion de datos","Manejo de situac. complejas / socios dificiles","Requiere intervencion con otro Dto.","Efectividad de dicha comunicacion","Registro y redaccion de consulta / reclamo"]}
   ],
-  "7075":[
-    {cat:"Recepcion",items:["Capta informacion desde el comienzo","Parafrasea al auxiliar para su entendimiento","Hace preguntas concretas para identificar la consulta"]},
-    {cat:"Comunicacion",items:["Emplea lenguaje formal apropiado","Requiere intervencion con otro Dto.","Predisposicion con la consulta planteada"]},
-    {cat:"Conocimiento",items:["Brinda informacion precisa y apropiada","Manejo de situaciones complejas / socios dificiles","Asesora para llegar a la informacion"]},
-    {cat:"Efectividad",items:["Ayuda a que el auxiliar pueda continuar la llamada con seguridad","Eficiente en el tiempo de respuesta con el auxiliar"]}
+  "7075": [
+    {cat:"Recepcion", items:["Capta informacion desde el comienzo","Parafrasea al auxiliar para su entendimiento","Hace preguntas concretas para identificar la consulta"]},
+    {cat:"Comunicacion", items:["Emplea lenguaje formal apropiado","Requiere intervencion con otro Dto.","Predisposicion con la consulta planteada"]},
+    {cat:"Conocimiento", items:["Brinda informacion precisa y apropiada","Manejo de situaciones complejas / socios dificiles","Asesora para llegar a la informacion"]},
+    {cat:"Efectividad", items:["Ayuda a que el auxiliar pueda continuar la llamada con seguridad","Eficiente en el tiempo de respuesta con el auxiliar"]}
   ]
 };
 
-var CONDUCTAS=[
+var CONDUCTAS = [
   "Saludar siempre a todos los companeros, tanto en persona como en el grupo de WV.",
   "Conexiones: Las mismas se deben dar 1 o 2 minutos antes de la jornada laboral. En modalidad Home Office, la conexion y desconexion se toma como el fichado.",
   "En cada nueva publicacion que subamos en WV, es muy importante que la leas detenidamente y le pongas Me gusta como registro de que fue leida.",
@@ -362,405 +335,565 @@ var CONDUCTAS=[
   "Estado ACW e imprevisto: este no puede igualar al estado ATT (tiempo de atencion). Debemos hacer uso adecuado del estado."
 ];
 
-// RUBS: solo items, sin nombre de categoria
-var RUBS=[
+var RUBS = [
   ["Saluda y se presenta correctamente al inicio","Utiliza el nombre del socio durante la llamada","Ofrece ayuda adicional antes del cierre","Cierre cordial y profesional"],
   ["Ortografia y puntuacion correctas","Adapta la plantilla o speech al caso","Fuente y formato adecuado en comunicaciones escritas"],
   ["Conocimiento general","Uso de sistema y herramientas","Brinda informacion precisa y actualizada","Efectividad en la comunicacion"],
   ["Resuelve en el primer contacto cuando es posible","Manejo de situaciones complejas o socios dificiles","Tiempo de respuesta y cierre eficiente"]
 ];
 
-var RLBLS=["Protocolos de cortesia","Comunicacion escrita - Redaccion y fuente","Conocimiento - Sistema, herramientas y teorico","Efectividad en comunicacion con el socio"];
+var RLBLS = ["Protocolos de cortesia","Comunicacion escrita - Redaccion y fuente","Conocimiento - Sistema, herramientas y teorico","Efectividad en comunicacion con el socio"];
 
-var canal="telefonica", total=0;
+// ── ESTADO ─────────────────────────────────────────────────────────────────
+var canal = "telefonica";
+var totalRows = 0;
 
-function cambiarCanal(val){
-  canal=val;
-  var tabs=document.getElementsByClassName("ctab");
-  for(var i=0;i<tabs.length;i++) tabs[i].className=tabs[i].getAttribute("data-canal")===val?"ctab active":"ctab";
-  renderAll(CATS[val]);
-  var isSem=val==="semestral";
-  document.getElementById("indCard").style.display=isSem?"none":"block";
-  document.getElementById("condCard").style.display=isSem?"block":"none";
-  document.getElementById("objField").style.display=isSem?"block":"none";
-  var rubs=document.getElementsByClassName("sem-rubric");
-  for(var i=0;i<rubs.length;i++) rubs[i].style.display=isSem?"block":"none";
-  if(isSem){ renderConductas(); renderRubrics(); }
+// ── CANAL ──────────────────────────────────────────────────────────────────
+function cambiarCanal(val) {
+  canal = val;
+  var tabs = document.getElementsByClassName("ctab");
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].className = tabs[i].getAttribute("data-canal") === val ? "ctab active" : "ctab";
+  }
+  var isSem = val === "semestral";
+  document.getElementById("indCard").style.display  = isSem ? "none"  : "block";
+  document.getElementById("condCard").style.display = isSem ? "block" : "none";
+  document.getElementById("objField").style.display  = isSem ? "block" : "none";
+  var rubs = document.getElementsByClassName("sem-rubric");
+  for (var i = 0; i < rubs.length; i++) {
+    rubs[i].style.display = isSem ? "block" : "none";
+  }
+  renderIndicadores(CATS[val]);
+  if (isSem) { renderConductas(); renderRubrics(); }
   recalc();
 }
 
-function makeOpts(id){
-  var s=document.createElement("select");
-  s.id=id; s.onchange=recalc;
-  var opts=[["","—"],["1","1"],["3","3"],["4","4"],["5","5"],["na","N/A"]];
-  for(var i=0;i<opts.length;i++){var o=document.createElement("option");o.value=opts[i][0];o.textContent=opts[i][1];s.appendChild(o);}
+// ── INDICADORES ────────────────────────────────────────────────────────────
+function makeSelect(id) {
+  var s = document.createElement("select");
+  s.id = id;
+  s.onchange = recalc;
+  var opts = [["","—"],["1","1"],["3","3"],["4","4"],["5","5"],["na","N/A"]];
+  for (var i = 0; i < opts.length; i++) {
+    var o = document.createElement("option");
+    o.value = opts[i][0];
+    o.textContent = opts[i][1];
+    s.appendChild(o);
+  }
   return s;
 }
 
-function renderAll(cats){
-  var db=document.getElementById("dtbody"), mb=document.getElementById("mtbl");
-  db.innerHTML=""; mb.innerHTML="";
-  var rid=0;
-  for(var ci=0;ci<cats.length;ci++){
-    var cat=cats[ci];
-    var lbl=document.createElement("div"); lbl.className="cat-lbl"; lbl.textContent=cat.cat; mb.appendChild(lbl);
-    for(var ii=0;ii<cat.items.length;ii++){
-      var item=cat.items[ii];
-      // Desktop row
-      var tr=document.createElement("tr");
-      if(ii===0) tr.className="crow";
-      var td1=document.createElement("td"); td1.className="clbl-d"; td1.textContent=ii===0?cat.cat:""; tr.appendChild(td1);
-      var td2=document.createElement("td"); td2.className="iname"; td2.textContent=item; tr.appendChild(td2);
-      for(var col=1;col<=4;col++){
-        var tds=document.createElement("td"); tds.style.textAlign="center";
-        var sel=makeOpts("s"+rid+"_"+col); sel.className="sc";
-        tds.appendChild(sel); tr.appendChild(tds);
+function renderIndicadores(cats) {
+  var db = document.getElementById("dtbody");
+  var mb = document.getElementById("mtbl");
+  db.innerHTML = "";
+  mb.innerHTML = "";
+  var rid = 0;
+
+  for (var ci = 0; ci < cats.length; ci++) {
+    var cat = cats[ci];
+
+    // Mobile: category label
+    var lbl = document.createElement("div");
+    lbl.className = "cat-lbl";
+    lbl.textContent = cat.cat;
+    mb.appendChild(lbl);
+
+    for (var ii = 0; ii < cat.items.length; ii++) {
+      var item = cat.items[ii];
+
+      // ── Desktop row ──
+      var tr = document.createElement("tr");
+      if (ii === 0) tr.className = "crow";
+
+      var td1 = document.createElement("td");
+      td1.className = "clbl-d";
+      td1.textContent = ii === 0 ? cat.cat : "";
+      tr.appendChild(td1);
+
+      var td2 = document.createElement("td");
+      td2.className = "iname";
+      td2.textContent = item;
+      tr.appendChild(td2);
+
+      for (var dc = 1; dc <= 4; dc++) {
+        var tdc = document.createElement("td");
+        tdc.style.textAlign = "center";
+        var dsel = makeSelect("s" + rid + "_" + dc);
+        dsel.className = "sc";
+        tdc.appendChild(dsel);
+        tr.appendChild(tdc);
       }
-      var tdp=document.createElement("td"); tdp.className="prc"; tdp.id="pr"+rid; tdp.textContent="—"; tr.appendChild(tdp);
+
+      var tdp = document.createElement("td");
+      tdp.className = "prc";
+      tdp.id = "pr" + rid;
+      tdp.textContent = "—";
+      tr.appendChild(tdp);
       db.appendChild(tr);
-      // Mobile card
-      var ic=document.createElement("div"); ic.className="icard";
-      var nm=document.createElement("div"); nm.className="iname-m"; nm.textContent=item; ic.appendChild(nm);
-      var sr=document.createElement("div"); sr.className="srow";
-      for(var c=1;c<=4;c++){
-        var scDiv=document.createElement("div"); scDiv.className="scol";
-        var sl=document.createElement("div"); sl.className="slbl"; sl.textContent="C"+c; scDiv.appendChild(sl);
-        var msel=makeOpts("sm"+rid+"_"+c);
-        (function(r,col){
-          msel.onchange=function(){
-            var ds=document.getElementById("s"+r+"_"+col);
-            if(ds) ds.value=this.value;
+
+      // ── Mobile card ──
+      var icard = document.createElement("div");
+      icard.className = "icard";
+
+      var nm = document.createElement("div");
+      nm.className = "iname-m";
+      nm.textContent = item;
+      icard.appendChild(nm);
+
+      var srow = document.createElement("div");
+      srow.className = "srow";
+
+      for (var mc = 1; mc <= 4; mc++) {
+        var scol = document.createElement("div");
+        scol.className = "scol";
+
+        var slbl = document.createElement("div");
+        slbl.className = "slbl";
+        slbl.textContent = "C" + mc;
+        scol.appendChild(slbl);
+
+        var msel = makeSelect("sm" + rid + "_" + mc);
+        // sync mobile -> desktop
+        (function(r, c) {
+          msel.onchange = function() {
+            var ds = document.getElementById("s" + r + "_" + c);
+            if (ds) ds.value = this.value;
             recalc();
           };
-          var ds2=document.getElementById("s"+r+"_"+col);
-          if(ds2) ds2.onchange=(function(ms){return function(){ms.value=this.value;recalc();};})(msel);
-        })(rid,c);
-        scDiv.appendChild(msel); sr.appendChild(scDiv);
+        })(rid, mc);
+        scol.appendChild(msel);
+        srow.appendChild(scol);
       }
-      var pc2=document.createElement("div"); pc2.className="prcol";
-      var pl=document.createElement("div"); pl.className="prlbl"; pl.textContent="Prom"; pc2.appendChild(pl);
-      var pv=document.createElement("div"); pv.className="prval"; pv.id="mpr"+rid; pv.textContent="—"; pc2.appendChild(pv);
-      sr.appendChild(pc2); ic.appendChild(sr); mb.appendChild(ic);
+
+      var prcol = document.createElement("div");
+      prcol.className = "prcol";
+      var prlbl = document.createElement("div");
+      prlbl.className = "prlbl";
+      prlbl.textContent = "Prom";
+      prcol.appendChild(prlbl);
+      var prval = document.createElement("div");
+      prval.className = "prval";
+      prval.id = "mpr" + rid;
+      prval.textContent = "—";
+      prcol.appendChild(prval);
+      srow.appendChild(prcol);
+
+      icard.appendChild(srow);
+      mb.appendChild(icard);
       rid++;
     }
   }
-  total=rid;
+  totalRows = rid;
 }
 
-function renderConductas(){
-  var list=document.getElementById("condList"); list.innerHTML="";
-  for(var i=0;i<CONDUCTAS.length;i++){
-    var d=document.createElement("div"); d.className="citem";
-    var top=document.createElement("div"); top.className="ctop";
-    var num=document.createElement("div"); num.className="cnum"; num.textContent=i+1;
-    var txt=document.createElement("div"); txt.className="ctxt"; txt.textContent=CONDUCTAS[i];
-    top.appendChild(num); top.appendChild(txt); d.appendChild(top);
-    var btns=document.createElement("div"); btns.className="cbtns";
-    var ba=document.createElement("span"); ba.className="cbtn"; ba.textContent="✔ Aplica";
-    ba.onclick=(function(b){return function(){toggleCond(b,"apl");};})(ba);
-    var bn=document.createElement("span"); bn.className="cbtn"; bn.textContent="✖ No aplica";
-    bn.onclick=(function(b){return function(){toggleCond(b,"nap");};})(bn);
-    btns.appendChild(ba); btns.appendChild(bn); d.appendChild(btns);
-    var obs=document.createElement("textarea"); obs.className="cobs"; obs.id="cobs"+i; obs.placeholder="Observacion (opcional)...";
-    d.appendChild(obs); list.appendChild(d);
+// ── CONDUCTAS ──────────────────────────────────────────────────────────────
+function makeCond(text, obsId, useIIFE) {
+  var d = document.createElement("div");
+  d.className = useIIFE ? "ritem" : "citem";
+
+  var top = document.createElement("div");
+  top.className = "ctop";
+  var num = document.createElement("div");
+  num.className = "cnum";
+  num.textContent = obsId.split("_").pop()*1 + 1 || "·";
+  var txt = document.createElement("div");
+  txt.className = "ctxt";
+  txt.textContent = text;
+  top.appendChild(num);
+  top.appendChild(txt);
+  d.appendChild(top);
+
+  var btns = document.createElement("div");
+  btns.className = "cbtns";
+  var ba = document.createElement("span");
+  ba.className = "cbtn";
+  ba.textContent = "✔ Aplica";
+  ba.onclick = (function(b) { return function() { toggleCond(b, "apl"); }; })(ba);
+  var bn = document.createElement("span");
+  bn.className = "cbtn";
+  bn.textContent = "✖ No aplica";
+  bn.onclick = (function(b) { return function() { toggleCond(b, "nap"); }; })(bn);
+  btns.appendChild(ba);
+  btns.appendChild(bn);
+  d.appendChild(btns);
+
+  var obs = document.createElement("textarea");
+  obs.className = "cobs";
+  obs.id = obsId;
+  obs.placeholder = "Observacion (opcional)...";
+  d.appendChild(obs);
+  return d;
+}
+
+function renderConductas() {
+  var list = document.getElementById("condList");
+  list.innerHTML = "";
+  for (var i = 0; i < CONDUCTAS.length; i++) {
+    var d = makeCond(CONDUCTAS[i], "cobs" + i, false);
+    // fix number display
+    d.querySelector(".cnum").textContent = i + 1;
+    list.appendChild(d);
   }
 }
 
-function renderRubrics(){
-  for(var ri=0;ri<RUBS.length;ri++){
-    var list=document.getElementById("rubList"+ri);
-    if(!list) continue;
-    list.innerHTML="";
-    for(var ii=0;ii<RUBS[ri].length;ii++){
-      (function(rubI,itemI,text){
-        var d=document.createElement("div"); d.className="ritem";
-        var top=document.createElement("div"); top.className="ctop";
-        var num=document.createElement("div"); num.className="cnum"; num.textContent=itemI+1;
-        var txt=document.createElement("div"); txt.className="ctxt"; txt.textContent=text;
-        top.appendChild(num); top.appendChild(txt); d.appendChild(top);
-        var btns=document.createElement("div"); btns.className="cbtns";
-        var ba=document.createElement("span"); ba.className="cbtn"; ba.textContent="✔ Aplica";
-        ba.onclick=(function(b){return function(){toggleCond(b,"apl");};})(ba);
-        var bn=document.createElement("span"); bn.className="cbtn"; bn.textContent="✖ No aplica";
-        bn.onclick=(function(b){return function(){toggleCond(b,"nap");};})(bn);
-        btns.appendChild(ba); btns.appendChild(bn); d.appendChild(btns);
-        var obs=document.createElement("textarea"); obs.className="cobs";
-        obs.id="robs"+rubI+"_"+itemI; obs.placeholder="Observacion (opcional)...";
-        d.appendChild(obs); list.appendChild(d);
-      })(ri,ii,RUBS[ri][ii]);
+function renderRubrics() {
+  for (var ri = 0; ri < RUBS.length; ri++) {
+    var list = document.getElementById("rubList" + ri);
+    if (!list) continue;
+    list.innerHTML = "";
+    for (var ii = 0; ii < RUBS[ri].length; ii++) {
+      var d = makeCond(RUBS[ri][ii], "robs" + ri + "_" + ii, true);
+      d.querySelector(".cnum").textContent = ii + 1;
+      list.appendChild(d);
     }
   }
 }
 
-function toggleCond(el,cls){
-  var bs=el.parentNode.getElementsByClassName("cbtn");
-  for(var i=0;i<bs.length;i++) bs[i].className="cbtn";
-  el.className="cbtn "+cls;
+function toggleCond(el, cls) {
+  var btns = el.parentNode.getElementsByClassName("cbtn");
+  for (var i = 0; i < btns.length; i++) btns[i].className = "cbtn";
+  el.className = "cbtn " + cls;
 }
 
-function gv(id){var e=document.getElementById(id);if(!e)return null;var v=e.value;if(!v||v==="na")return null;var n=parseInt(v,10);return isNaN(n)?null:n;}
-function sc(v){if(v>=4.5)return"#2d2a8a";if(v>=4)return"#00b89c";if(v>=3)return"#c47a0a";return"#e03e52";}
+// ── RECALC ─────────────────────────────────────────────────────────────────
+function getVal(id) {
+  var el = document.getElementById(id);
+  if (!el) return null;
+  var v = el.value;
+  if (!v || v === "na") return null;
+  var n = parseInt(v, 10);
+  return isNaN(n) ? null : n;
+}
 
-function recalc(){
-  for(var r=0;r<total;r++){
-    var vals=[];
-    for(var c=1;c<=4;c++){var v=gv("s"+r+"_"+c);if(v!==null)vals.push(v);}
-    var pr=document.getElementById("pr"+r), mpr=document.getElementById("mpr"+r);
-    if(vals.length===0){
-      if(pr){pr.textContent="—";pr.style.color="#c4c9de";}
-      if(mpr){mpr.textContent="—";mpr.style.color="#c4c9de";}
+function scoreColor(v) {
+  if (v >= 4.5) return "#2d2a8a";
+  if (v >= 4)   return "#00b89c";
+  if (v >= 3)   return "#c47a0a";
+  return "#e03e52";
+}
+
+function recalc() {
+  for (var r = 0; r < totalRows; r++) {
+    var vals = [];
+    for (var c = 1; c <= 4; c++) {
+      var v = getVal("s" + r + "_" + c);
+      if (v !== null) vals.push(v);
+    }
+    var pr  = document.getElementById("pr" + r);
+    var mpr = document.getElementById("mpr" + r);
+    if (vals.length === 0) {
+      if (pr)  { pr.textContent  = "—"; pr.style.color  = "#c4c9de"; }
+      if (mpr) { mpr.textContent = "—"; mpr.style.color = "#c4c9de"; }
       continue;
     }
-    var avg=0; for(var i=0;i<vals.length;i++) avg+=vals[i]; avg/=vals.length;
-    var col=sc(avg);
-    if(pr){pr.textContent=avg.toFixed(1);pr.style.color=col;}
-    if(mpr){mpr.textContent=avg.toFixed(1);mpr.style.color=col;}
+    var sum = 0;
+    for (var i = 0; i < vals.length; i++) sum += vals[i];
+    var avg = sum / vals.length;
+    var col = scoreColor(avg);
+    if (pr)  { pr.textContent  = avg.toFixed(1); pr.style.color  = col; }
+    if (mpr) { mpr.textContent = avg.toFixed(1); mpr.style.color = col; }
   }
-  var ct=[];
-  for(var c=1;c<=4;c++){
-    var s=0,mx=0;
-    for(var r=0;r<total;r++){var v=gv("s"+r+"_"+c);if(v!==null){s+=v;mx+=5;}}
-    ct.push(mx>0?Math.round((s/mx)*100):null);
+
+  var convTotals = [];
+  for (var c = 1; c <= 4; c++) {
+    var s = 0, mx = 0;
+    for (var r = 0; r < totalRows; r++) {
+      var v = getVal("s" + r + "_" + c);
+      if (v !== null) { s += v; mx += 5; }
+    }
+    convTotals.push(mx > 0 ? Math.round((s / mx) * 100) : null);
   }
-  for(var i=0;i<4;i++){
-    var e=document.getElementById("t"+(i+1)); if(!e) continue;
-    var p=ct[i]; e.textContent=p!==null?p+"%":"—";
-    e.style.color=p===null?"#c4c9de":p>=80?"#00b89c":p>=60?"#c47a0a":"#e03e52";
+
+  for (var i = 0; i < 4; i++) {
+    var el = document.getElementById("t" + (i + 1));
+    if (!el) continue;
+    var p = convTotals[i];
+    el.textContent = p !== null ? p + "%" : "—";
+    el.style.color = p === null ? "#c4c9de" : p >= 80 ? "#00b89c" : p >= 60 ? "#c47a0a" : "#e03e52";
   }
-  var vld=[]; for(var i=0;i<ct.length;i++){if(ct[i]!==null)vld.push(ct[i]);}
-  var ne2=document.getElementById("tnota"),pe=document.getElementById("pbar"),pp=document.getElementById("ppct");
-  if(vld.length===0){
-    if(ne2)ne2.textContent="—";
-    if(pe){pe.style.width="0%";pe.style.background="#e03e52";}
-    if(pp)pp.textContent="0%";
+
+  var valid = [];
+  for (var i = 0; i < convTotals.length; i++) {
+    if (convTotals[i] !== null) valid.push(convTotals[i]);
+  }
+
+  var notaEl = document.getElementById("tnota");
+  var pbar   = document.getElementById("pbar");
+  var ppct   = document.getElementById("ppct");
+
+  if (valid.length === 0) {
+    if (notaEl) notaEl.textContent = "—";
+    if (pbar)   { pbar.style.width = "0%"; pbar.style.background = "#e03e52"; }
+    if (ppct)   ppct.textContent = "0%";
     return;
   }
-  var sm=0; for(var i=0;i<vld.length;i++) sm+=vld[i];
-  var nota=Math.round(sm/vld.length);
-  var nc=nota>=80?"#00b89c":nota>=60?"#c47a0a":"#e03e52";
-  if(ne2)ne2.textContent=nota+"%";
-  if(pe){pe.style.width=nota+"%";pe.style.background=nc;}
-  if(pp)pp.textContent=nota+"%";
+
+  var vsum = 0;
+  for (var i = 0; i < valid.length; i++) vsum += valid[i];
+  var nota = Math.round(vsum / valid.length);
+  var nc = nota >= 80 ? "#00b89c" : nota >= 60 ? "#c47a0a" : "#e03e52";
+
+  if (notaEl) notaEl.textContent = nota + "%";
+  if (pbar)   { pbar.style.width = nota + "%"; pbar.style.background = nc; }
+  if (ppct)   ppct.textContent = nota + "%";
 }
 
-function selNC(el,cls){
-  var bs=document.getElementsByClassName("ncbtn");
-  for(var i=0;i<bs.length;i++) bs[i].className="ncbtn";
-  el.className="ncbtn "+cls;
-}
-function toggleMedio(el){
-  var bs=document.getElementsByClassName("mbtn");
-  for(var i=0;i<bs.length;i++) bs[i].className="mbtn";
-  el.className="mbtn active";
+// ── HELPERS ────────────────────────────────────────────────────────────────
+function selNC(el, cls) {
+  var bs = document.getElementsByClassName("ncbtn");
+  for (var i = 0; i < bs.length; i++) bs[i].className = "ncbtn";
+  el.className = "ncbtn " + cls;
 }
 
-function limpiar(){
-  if(!confirm("Limpiar todo el formulario?")) return;
-  var ids=["colaborador","supervisor","fecha","sp1","sp2","sp3","sp4","id1","id2","id3","id4","fort","mej","obj"];
-  for(var i=0;i<ids.length;i++){var e=document.getElementById(ids[i]);if(e)e.value="";}
-  var mb=document.getElementsByClassName("mbtn"); for(var i=0;i<mb.length;i++) mb[i].className="mbtn";
-  var nb=document.getElementsByClassName("ncbtn"); for(var i=0;i<nb.length;i++) nb[i].className="ncbtn";
-  for(var r=0;r<total;r++) for(var c=1;c<=4;c++){
-    var e=document.getElementById("s"+r+"_"+c); if(e)e.value="";
-    var em=document.getElementById("sm"+r+"_"+c); if(em)em.value="";
+function toggleMedio(el) {
+  var bs = document.getElementsByClassName("mbtn");
+  for (var i = 0; i < bs.length; i++) bs[i].className = "mbtn";
+  el.className = "mbtn active";
+}
+
+function limpiar() {
+  if (!confirm("¿Limpiar todo el formulario?")) return;
+  var campos = ["colaborador","supervisor","fecha","sp1","sp2","sp3","sp4","id1","id2","id3","id4","fort","mej","obj"];
+  for (var i = 0; i < campos.length; i++) {
+    var el = document.getElementById(campos[i]);
+    if (el) el.value = "";
   }
-  var cb=document.getElementsByClassName("cbtn"); for(var i=0;i<cb.length;i++) cb[i].className="cbtn";
-  var co=document.getElementsByClassName("cobs"); for(var i=0;i<co.length;i++) co[i].value="";
+  var mb = document.getElementsByClassName("mbtn");
+  for (var i = 0; i < mb.length; i++) mb[i].className = "mbtn";
+  var nb = document.getElementsByClassName("ncbtn");
+  for (var i = 0; i < nb.length; i++) nb[i].className = "ncbtn";
+  for (var r = 0; r < totalRows; r++) {
+    for (var c = 1; c <= 4; c++) {
+      var ds = document.getElementById("s" + r + "_" + c);  if (ds) ds.value = "";
+      var ms = document.getElementById("sm" + r + "_" + c); if (ms) ms.value = "";
+    }
+  }
+  var cb = document.getElementsByClassName("cbtn");
+  for (var i = 0; i < cb.length; i++) cb[i].className = "cbtn";
+  var co = document.getElementsByClassName("cobs");
+  for (var i = 0; i < co.length; i++) co[i].value = "";
   recalc();
 }
 
-function exportPDF(){
-  var P="#2d2a8a",G="#00b89c",R="#e03e52",A="#c47a0a";
-  var col=document.getElementById("colaborador").value||"(sin datos)";
-  var sup=document.getElementById("supervisor").value||"(sin datos)";
-  var fecha=document.getElementById("fecha").value||"(sin datos)";
-  var sp=[],ids=[];
-  for(var i=1;i<=4;i++){sp.push(document.getElementById("sp"+i).value||"—");ids.push(document.getElementById("id"+i).value||"—");}
-  var cn={telefonica:"Telefonica",digital:"Digital","7075":"Linea 7075",semestral:"Dev. Semestral"}[canal]||canal;
-  var me=document.querySelector(".mbtn.active"); var medio=me?me.textContent:"(sin datos)";
-  var fort=document.getElementById("fort").value||"";
-  var mej=document.getElementById("mej").value||"";
-  var objEl=document.getElementById("obj"); var obj=objEl?objEl.value:"";
-  var nce=document.querySelector(".ncbtn.snm,.ncbtn.sb,.ncbtn.smb,.ncbtn.sex");
-  var notaCual=nce?nce.getAttribute("data-val"):"";
-  var today=new Date().toLocaleDateString("es-AR",{day:"2-digit",month:"long",year:"numeric"});
+// ── EXPORT PDF ─────────────────────────────────────────────────────────────
+function exportPDF() {
+  var P = "#2d2a8a", G = "#00b89c", R = "#e03e52", A = "#c47a0a";
 
-  // Build indicator rows (only for non-semestral)
-  var rows="",rid2=0,cats=CATS[canal];
-  for(var ci=0;ci<cats.length;ci++){
-    var cat=cats[ci];
-    for(var ii=0;ii<cat.items.length;ii++){
-      var sc2=[]; var nv=[];
-      for(var c=1;c<=4;c++){var e=document.getElementById("s"+rid2+"_"+c);var v=e?e.value:"";sc2.push((!v||v==="")?"—":v==="na"?"N/A":v);}
-      for(var si=0;si<sc2.length;si++){var n=parseInt(sc2[si],10);if(!isNaN(n))nv.push(n);}
-      var prom="—"; if(nv.length>0){var s2=0;for(var ni=0;ni<nv.length;ni++)s2+=nv[ni];prom=(s2/nv.length).toFixed(1);}
-      var pc=prom==="—"?"#bbb":parseFloat(prom)>=4?G:parseFloat(prom)>=3?A:R;
-      rows+="<tr style='background:"+(ii===0?"#f5f4fc":"white")+"'>";
-      rows+="<td style='padding:6px 8px;border:1px solid #e4e2f5;font-size:9px;font-weight:800;color:"+P+";text-transform:uppercase'>"+(ii===0?cat.cat:"")+"</td>";
-      rows+="<td style='padding:6px 8px;border:1px solid #e4e2f5;font-size:11px;color:#444;line-height:1.4'>"+cat.items[ii]+"</td>";
-      for(var si=0;si<sc2.length;si++){var cl=sc2[si]==="1"?R:sc2[si]==="3"?A:(sc2[si]==="4"||sc2[si]==="5")?G:"#bbb";rows+="<td style='padding:6px 8px;border:1px solid #e4e2f5;font-size:12px;text-align:center;font-weight:700;color:"+cl+"'>"+sc2[si]+"</td>";}
-      rows+="<td style='padding:6px 8px;border:1px solid #e4e2f5;font-size:13px;text-align:center;font-weight:800;color:"+pc+"'>"+prom+"</td></tr>";
+  var col   = document.getElementById("colaborador").value || "(sin datos)";
+  var sup   = document.getElementById("supervisor").value  || "(sin datos)";
+  var fecha = document.getElementById("fecha").value       || "(sin datos)";
+  var sp = [], ids = [];
+  for (var i = 1; i <= 4; i++) {
+    sp.push(document.getElementById("sp" + i).value || "—");
+    ids.push(document.getElementById("id" + i).value || "—");
+  }
+  var canalNombre = {telefonica:"Telefonica",digital:"Digital","7075":"Linea 7075",semestral:"Dev. Semestral"}[canal] || canal;
+  var medioEl = document.querySelector(".mbtn.active");
+  var medio = medioEl ? medioEl.textContent : "(sin datos)";
+  var fort = document.getElementById("fort").value || "";
+  var mej  = document.getElementById("mej").value  || "";
+  var objEl = document.getElementById("obj");
+  var obj  = objEl ? objEl.value : "";
+  var nce  = document.querySelector(".ncbtn.snm,.ncbtn.sb,.ncbtn.smb,.ncbtn.sex");
+  var notaCual = nce ? nce.getAttribute("data-val") : "";
+  var today = new Date().toLocaleDateString("es-AR", {day:"2-digit",month:"long",year:"numeric"});
+
+  // Indicadores
+  var rows = "";
+  var rid2 = 0;
+  var cats = CATS[canal];
+  for (var ci = 0; ci < cats.length; ci++) {
+    var cat = cats[ci];
+    for (var ii = 0; ii < cat.items.length; ii++) {
+      var scores = [];
+      var numVals = [];
+      for (var c = 1; c <= 4; c++) {
+        var el = document.getElementById("s" + rid2 + "_" + c);
+        var v = el ? el.value : "";
+        var disp = (!v || v === "") ? "—" : v === "na" ? "N/A" : v;
+        scores.push(disp);
+        if (disp !== "—" && disp !== "N/A") numVals.push(parseInt(disp, 10));
+      }
+      var prom = "—";
+      if (numVals.length > 0) {
+        var s2 = 0;
+        for (var ni = 0; ni < numVals.length; ni++) s2 += numVals[ni];
+        prom = (s2 / numVals.length).toFixed(1);
+      }
+      var pc = prom === "—" ? "#bbb" : parseFloat(prom) >= 4 ? G : parseFloat(prom) >= 3 ? A : R;
+      rows += "<tr style='background:" + (ii === 0 ? "#f5f4fc" : "white") + "'>";
+      rows += "<td style='padding:6px 8px;border:1px solid #e4e2f5;font-size:9px;font-weight:800;color:" + P + ";text-transform:uppercase'>" + (ii === 0 ? cat.cat : "") + "</td>";
+      rows += "<td style='padding:6px 8px;border:1px solid #e4e2f5;font-size:11px;color:#444;line-height:1.4'>" + cat.items[ii] + "</td>";
+      for (var si = 0; si < scores.length; si++) {
+        var sc = scores[si] === "1" ? R : scores[si] === "3" ? A : (scores[si] === "4" || scores[si] === "5") ? G : "#bbb";
+        rows += "<td style='padding:6px 8px;border:1px solid #e4e2f5;font-size:12px;text-align:center;font-weight:700;color:" + sc + "'>" + scores[si] + "</td>";
+      }
+      rows += "<td style='padding:6px 8px;border:1px solid #e4e2f5;font-size:13px;text-align:center;font-weight:800;color:" + pc + "'>" + prom + "</td></tr>";
       rid2++;
     }
   }
 
   // Totals
-  var ct2=[];
-  for(var c=1;c<=4;c++){var s=0,mx=0;for(var r=0;r<total;r++){var v=gv("s"+r+"_"+c);if(v!==null){s+=v;mx+=5;}}ct2.push(mx>0?Math.round((s/mx)*100):null);}
-  var vld2=[],sm2=0; for(var i=0;i<ct2.length;i++){if(ct2[i]!==null){vld2.push(ct2[i]);sm2+=ct2[i];}}
-  var nf=vld2.length>0?Math.round(sm2/vld2.length):null;
-  var nc2=nf===null?"#bbb":nf>=80?G:nf>=60?A:R;
-  var th=""; for(var i=0;i<4;i++){var p=ct2[i],cl=p===null?"#bbb":p>=80?G:p>=60?A:R;th+="<div class='tot'><label>Conv."+(i+1)+"</label><strong style='color:"+cl+"'>"+(p!==null?p+"%":"—")+"</strong></div>";}
-  th+="<div class='tot nota'><label>Nota final</label><strong>"+(nf!==null?nf+"%":"—")+"</strong></div>";
-
-  // Conductas (semestral) - iterate over CONDUCTAS array, read DOM state from condList
-  var condH="";
-  if(canal==="semestral"){
-    var condListEl=document.getElementById("condList");
-    var condItems=condListEl?condListEl.getElementsByClassName("citem"):[];
-    var cr="";
-    for(var i=0;i<CONDUCTAS.length;i++){
-      var ap=condItems[i]&&condItems[i].querySelector(".cbtn.apl")?"Aplica":condItems[i]&&condItems[i].querySelector(".cbtn.nap")?"No aplica":"—";
-      var col3=ap==="Aplica"?G:ap==="No aplica"?R:"#bbb";
-      var oe=document.getElementById("cobs"+i); var ob=oe?oe.value:"";
-      cr+="<tr style='background:"+(i%2===0?"#f5f4fc":"white")+"'>";
-      cr+="<td style='padding:6px 10px;border:1px solid #e4e2f5;font-size:11px;color:#333;line-height:1.5'>"+CONDUCTAS[i]+"</td>";
-      cr+="<td style='padding:6px 10px;border:1px solid #e4e2f5;font-size:11px;text-align:center;font-weight:700;color:"+col3+"'>"+ap+"</td>";
-      cr+="<td style='padding:6px 10px;border:1px solid #e4e2f5;font-size:11px;color:#555'>"+ob+"</td></tr>";
+  var ct = [];
+  for (var c = 1; c <= 4; c++) {
+    var s = 0, mx = 0;
+    for (var r = 0; r < totalRows; r++) {
+      var v = getVal("s" + r + "_" + c);
+      if (v !== null) { s += v; mx += 5; }
     }
-    condH="<div style='font-size:10px;font-weight:800;color:"+P+";text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;padding-bottom:5px;border-bottom:2px solid "+P+"'>Conductas y compromisos</div>";
-    condH+="<table style='width:100%;border-collapse:collapse;margin-bottom:16px'><thead><tr style='background:"+P+"'><th style='padding:7px 8px;color:rgba(255,255,255,.9);font-size:9px;font-weight:700;text-transform:uppercase;text-align:left'>Conducta</th><th style='padding:7px 8px;color:rgba(255,255,255,.9);font-size:9px;font-weight:700;text-transform:uppercase;text-align:center;width:80px'>Estado</th><th style='padding:7px 8px;color:rgba(255,255,255,.9);font-size:9px;font-weight:700;text-transform:uppercase;text-align:left'>Observacion</th></tr></thead><tbody>"+cr+"</tbody></table>";
+    ct.push(mx > 0 ? Math.round((s / mx) * 100) : null);
+  }
+  var vld = [], vs = 0;
+  for (var i = 0; i < ct.length; i++) { if (ct[i] !== null) { vld.push(ct[i]); vs += ct[i]; } }
+  var nf = vld.length > 0 ? Math.round(vs / vld.length) : null;
+  var nfColor = nf === null ? "#bbb" : nf >= 80 ? G : nf >= 60 ? A : R;
+
+  var totH = "";
+  for (var i = 0; i < 4; i++) {
+    var p = ct[i];
+    var cl = p === null ? "#bbb" : p >= 80 ? G : p >= 60 ? A : R;
+    totH += "<div class='tot'><label>Conv." + (i+1) + "</label><strong style='color:" + cl + "'>" + (p !== null ? p + "%" : "—") + "</strong></div>";
+  }
+  totH += "<div class='tot nota'><label>Nota final</label><strong>" + (nf !== null ? nf + "%" : "—") + "</strong></div>";
+
+  // Conductas
+  var condH = "";
+  if (canal === "semestral") {
+    var condListEl = document.getElementById("condList");
+    var condItems = condListEl ? condListEl.getElementsByClassName("citem") : [];
+    var cr = "";
+    for (var i = 0; i < CONDUCTAS.length; i++) {
+      var ap = (condItems[i] && condItems[i].querySelector(".cbtn.apl")) ? "Aplica" :
+               (condItems[i] && condItems[i].querySelector(".cbtn.nap")) ? "No aplica" : "—";
+      var col3 = ap === "Aplica" ? G : ap === "No aplica" ? R : "#bbb";
+      var obsEl = document.getElementById("cobs" + i);
+      var ob = obsEl ? obsEl.value : "";
+      cr += "<tr style='background:" + (i % 2 === 0 ? "#f5f4fc" : "white") + "'>";
+      cr += "<td style='padding:6px 10px;border:1px solid #e4e2f5;font-size:11px;color:#333;line-height:1.5'>" + CONDUCTAS[i] + "</td>";
+      cr += "<td style='padding:6px 10px;border:1px solid #e4e2f5;font-size:11px;text-align:center;font-weight:700;color:" + col3 + "'>" + ap + "</td>";
+      cr += "<td style='padding:6px 10px;border:1px solid #e4e2f5;font-size:11px;color:#555'>" + ob + "</td></tr>";
+    }
+    condH  = "<div style='font-size:10px;font-weight:800;color:" + P + ";text-transform:uppercase;margin-bottom:6px;padding-bottom:5px;border-bottom:2px solid " + P + "'>Conductas y compromisos</div>";
+    condH += "<table style='width:100%;border-collapse:collapse;margin-bottom:16px'><thead><tr style='background:" + P + "'>";
+    condH += "<th style='padding:7px 8px;color:rgba(255,255,255,.9);font-size:9px;font-weight:700;text-transform:uppercase;text-align:left'>Conducta</th>";
+    condH += "<th style='padding:7px 8px;color:rgba(255,255,255,.9);font-size:9px;text-align:center;width:80px'>Estado</th>";
+    condH += "<th style='padding:7px 8px;color:rgba(255,255,255,.9);font-size:9px;text-align:left'>Observacion</th>";
+    condH += "</tr></thead><tbody>" + cr + "</tbody></table>";
   }
 
-  // Rubrics (semestral) - iterate RUBS array directly, read DOM state by id
-  var rubH="";
-  if(canal==="semestral"){
-    for(var ri=0;ri<RUBS.length;ri++){
-      var rrows="";
-      for(var ii=0;ii<RUBS[ri].length;ii++){
-        var itemTxt=RUBS[ri][ii];
-        var ap2="—"; var col4="#bbb";
-        var rlistEl=document.getElementById("rubList"+ri);
-        if(rlistEl){
-          var ritems=rlistEl.getElementsByClassName("ritem");
-          if(ritems[ii]){
-            ap2=ritems[ii].querySelector(".cbtn.apl")?"Aplica":ritems[ii].querySelector(".cbtn.nap")?"No aplica":"—";
-            col4=ap2==="Aplica"?G:ap2==="No aplica"?R:"#bbb";
-          }
-        }
-        var oe2=document.getElementById("robs"+ri+"_"+ii); var ob2=oe2?oe2.value:"";
-        rrows+="<tr style='background:"+(ii%2===0?"#f5f4fc":"white")+"'>";
-        rrows+="<td style='padding:5px 8px;border:1px solid #e4e2f5;font-size:11px;color:#333'>"+itemTxt+"</td>";
-        rrows+="<td style='padding:5px 8px;border:1px solid #e4e2f5;font-size:11px;text-align:center;font-weight:700;color:"+col4+"'>"+ap2+"</td>";
-        rrows+="<td style='padding:5px 8px;border:1px solid #e4e2f5;font-size:11px;color:#555'>"+ob2+"</td></tr>";
+  // Rubricas
+  var rubH = "";
+  if (canal === "semestral") {
+    for (var ri = 0; ri < RUBS.length; ri++) {
+      var rlist = document.getElementById("rubList" + ri);
+      var ritems = rlist ? rlist.getElementsByClassName("ritem") : [];
+      var rrows = "";
+      for (var ii = 0; ii < RUBS[ri].length; ii++) {
+        var ap2 = (ritems[ii] && ritems[ii].querySelector(".cbtn.apl")) ? "Aplica" :
+                  (ritems[ii] && ritems[ii].querySelector(".cbtn.nap")) ? "No aplica" : "—";
+        var col4 = ap2 === "Aplica" ? G : ap2 === "No aplica" ? R : "#bbb";
+        var obs2El = document.getElementById("robs" + ri + "_" + ii);
+        var ob2 = obs2El ? obs2El.value : "";
+        rrows += "<tr style='background:" + (ii % 2 === 0 ? "#f5f4fc" : "white") + "'>";
+        rrows += "<td style='padding:5px 8px;border:1px solid #e4e2f5;font-size:11px;color:#333'>" + RUBS[ri][ii] + "</td>";
+        rrows += "<td style='padding:5px 8px;border:1px solid #e4e2f5;font-size:11px;text-align:center;font-weight:700;color:" + col4 + "'>" + ap2 + "</td>";
+        rrows += "<td style='padding:5px 8px;border:1px solid #e4e2f5;font-size:11px;color:#555'>" + ob2 + "</td></tr>";
       }
-      rubH+="<div style='font-size:10px;font-weight:800;color:"+P+";text-transform:uppercase;letter-spacing:.07em;margin:12px 0 6px;padding-bottom:5px;border-bottom:2px solid "+P+"'>"+RLBLS[ri]+"</div>";
-      rubH+="<table style='width:100%;border-collapse:collapse;margin-bottom:10px'><thead><tr style='background:"+P+"'><th style='padding:6px 8px;color:rgba(255,255,255,.9);font-size:9px;font-weight:700;text-transform:uppercase;text-align:left'>Criterio</th><th style='padding:6px 8px;color:rgba(255,255,255,.9);font-size:9px;text-align:center;width:80px'>Estado</th><th style='padding:6px 8px;color:rgba(255,255,255,.9);font-size:9px;text-align:left'>Observacion</th></tr></thead><tbody>"+rrows+"</tbody></table>";
+      rubH += "<div style='font-size:10px;font-weight:800;color:" + P + ";text-transform:uppercase;margin:12px 0 6px;padding-bottom:5px;border-bottom:2px solid " + P + "'>" + RLBLS[ri] + "</div>";
+      rubH += "<table style='width:100%;border-collapse:collapse;margin-bottom:10px'><thead><tr style='background:" + P + "'>";
+      rubH += "<th style='padding:6px 8px;color:rgba(255,255,255,.9);font-size:9px;font-weight:700;text-transform:uppercase;text-align:left'>Criterio</th>";
+      rubH += "<th style='padding:6px 8px;color:rgba(255,255,255,.9);font-size:9px;text-align:center;width:80px'>Estado</th>";
+      rubH += "<th style='padding:6px 8px;color:rgba(255,255,255,.9);font-size:9px;text-align:left'>Observacion</th>";
+      rubH += "</tr></thead><tbody>" + rrows + "</tbody></table>";
     }
   }
 
-  var ncColors={"Necesita Mejorar":R,"Bueno":A,"Muy Bueno":G,"Excelente":P};
-  var ncEmojis={"Necesita Mejorar":"⚠️","Bueno":"👍","Muy Bueno":"⭐","Excelente":"🏆"};
-  var ncColor=ncColors[notaCual]||P;
+  var ncColors = {"Necesita Mejorar":R,"Bueno":A,"Muy Bueno":G,"Excelente":P};
+  var ncEmojis = {"Necesita Mejorar":"⚠️","Bueno":"👍","Muy Bueno":"⭐","Excelente":"🏆"};
+  var ncColor2 = ncColors[notaCual] || P;
 
-  var css="*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;color:#1c2040;background:white;padding:24px 28px;font-size:13px}";
-  css+=".hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding-bottom:14px;border-bottom:3px solid "+P+"}";
-  css+=".pill{background:"+P+";color:white;font-size:9px;font-weight:700;padding:3px 10px;border-radius:20px}";
-  css+=".hdr-r{text-align:right}.ht{font-size:14px;font-weight:800;color:"+P+"}.hs{font-size:10px;color:#9298b5;margin-top:2px}";
-  css+=".meta{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:16px}";
-  css+=".mf{background:#f7f8fc;padding:8px 10px;border-radius:9px;border:1px solid #dde0ed}";
-  css+=".mf label{display:block;color:#9298b5;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px}";
-  css+=".mf span{font-size:11px;font-weight:700;color:#1c2040}";
-  css+=".sec{font-size:10px;font-weight:800;color:"+P+";text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;padding-bottom:5px;border-bottom:2px solid "+P+"}";
-  css+="table{width:100%;border-collapse:collapse;margin-bottom:16px}";
-  css+="th{background:"+P+";color:rgba(255,255,255,.92);padding:7px 8px;text-align:left;font-size:8.5px;font-weight:700;text-transform:uppercase}th.c{text-align:center;width:50px}";
-  css+=".totals{display:flex;gap:7px;margin-bottom:8px}.tot{background:#f7f8fc;padding:9px 8px;border-radius:9px;flex:1;text-align:center;border:1.5px solid #dde0ed}";
-  css+=".tot label{font-size:8px;color:#9298b5;font-weight:700;text-transform:uppercase;display:block;margin-bottom:3px}.tot strong{font-size:16px;font-weight:700}";
-  css+=".tot.nota{background:"+P+";border-color:"+P+"}.tot.nota label{color:rgba(255,255,255,.6)}.tot.nota strong{color:white;font-size:18px}";
-  css+=".bar{background:#dde0ed;border-radius:4px;height:7px;margin:8px 0 16px}.barf{height:7px;border-radius:4px;background:"+nc2+";width:"+(nf||0)+"%}";
-  css+=".obs{background:#f7f8fc;padding:10px 12px;border-radius:9px;margin-bottom:10px;border:1px solid #dde0ed}";
-  css+=".obs label{font-weight:800;font-size:8.5px;text-transform:uppercase;color:#9298b5;display:block;margin-bottom:4px}.obs p{font-size:11.5px;color:#333;line-height:1.65}";
-  css+=".footer{margin-top:18px;padding-top:10px;border-top:1px solid #dde0ed;font-size:9px;color:#9298b5;display:flex;justify-content:space-between}";
-  css+="@media print{body{padding:14px 18px}}";
+  var css = "";
+  css += "*{box-sizing:border-box;margin:0;padding:0}";
+  css += "body{font-family:Arial,sans-serif;color:#1c2040;background:white;padding:24px 28px;font-size:13px}";
+  css += ".hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding-bottom:14px;border-bottom:3px solid " + P + "}";
+  css += ".pill{background:" + P + ";color:white;font-size:9px;font-weight:700;padding:3px 10px;border-radius:20px}";
+  css += ".hdr-r{text-align:right}.ht{font-size:14px;font-weight:800;color:" + P + "}.hs{font-size:10px;color:#9298b5;margin-top:2px}";
+  css += ".meta{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:16px}";
+  css += ".mf{background:#f7f8fc;padding:8px 10px;border-radius:9px;border:1px solid #dde0ed}";
+  css += ".mf label{display:block;color:#9298b5;font-size:8px;font-weight:700;text-transform:uppercase;margin-bottom:2px}";
+  css += ".mf span{font-size:11px;font-weight:700;color:#1c2040}";
+  css += ".sec{font-size:10px;font-weight:800;color:" + P + ";text-transform:uppercase;margin-bottom:6px;padding-bottom:5px;border-bottom:2px solid " + P + "}";
+  css += "table{width:100%;border-collapse:collapse;margin-bottom:16px}";
+  css += "th{background:" + P + ";color:rgba(255,255,255,.92);padding:7px 8px;text-align:left;font-size:8.5px;font-weight:700;text-transform:uppercase}";
+  css += "th.c{text-align:center;width:50px}";
+  css += ".totals{display:flex;gap:7px;margin-bottom:8px}";
+  css += ".tot{background:#f7f8fc;padding:9px 8px;border-radius:9px;flex:1;text-align:center;border:1.5px solid #dde0ed}";
+  css += ".tot label{font-size:8px;color:#9298b5;font-weight:700;text-transform:uppercase;display:block;margin-bottom:3px}";
+  css += ".tot strong{font-size:16px;font-weight:700}";
+  css += ".tot.nota{background:" + P + ";border-color:" + P + "}";
+  css += ".tot.nota label{color:rgba(255,255,255,.6)}.tot.nota strong{color:white;font-size:18px}";
+  css += ".bar{background:#dde0ed;border-radius:4px;height:7px;margin:8px 0 16px}";
+  css += ".barf{height:7px;border-radius:4px;background:" + nfColor + ";width:" + (nf || 0) + "%}";
+  css += ".obs{background:#f7f8fc;padding:10px 12px;border-radius:9px;margin-bottom:10px;border:1px solid #dde0ed}";
+  css += ".obs label{font-weight:800;font-size:8.5px;text-transform:uppercase;color:#9298b5;display:block;margin-bottom:4px}";
+  css += ".obs p{font-size:11.5px;color:#333;line-height:1.65}";
+  css += ".footer{margin-top:18px;padding-top:10px;border-top:1px solid #dde0ed;font-size:9px;color:#9298b5;display:flex;justify-content:space-between}";
+  css += "@media print{body{padding:14px 18px}}";
 
-  var html="<!DOCTYPE html><html><head><meta charset='utf-8'><title>Monitoreo - "+col+"</title><style>"+css+"</style></head><body>";
-  html+="<div class='hdr'><div style='display:flex;align-items:center;gap:12px'><span style='font-size:17px;font-weight:800;color:"+P+"'>Jerarquicos Salud</span><span class='pill'>"+cn+"</span></div>";
-  html+="<div class='hdr-r'><div class='ht'>Planilla de monitoreo</div><div class='hs'>Centro de Atencion · "+today+"</div></div></div>";
-  html+="<div class='meta'>";
-  html+="<div class='mf'><label>Colaborador</label><span>"+col+"</span></div>";
-  html+="<div class='mf'><label>Supervisor</label><span>"+sup+"</span></div>";
-  html+="<div class='mf'><label>Fecha</label><span>"+fecha+"</span></div>";
-  html+="<div class='mf'><label>Medio</label><span>"+medio+"</span></div>";
-  html+="<div class='mf' style='grid-column:span 2'><label>Socio / Prestador</label><span>C1:"+sp[0]+" · C2:"+sp[1]+" · C3:"+sp[2]+" · C4:"+sp[3]+"</span></div>";
-  html+="<div class='mf' style='grid-column:span 2'><label>ID de llamada</label><span>C1:"+ids[0]+" · C2:"+ids[1]+" · C3:"+ids[2]+" · C4:"+ids[3]+"</span></div>";
-  html+="</div>";
-  if(canal!=="semestral"){
-    html+="<div class='sec'>Indicadores de evaluacion</div>";
-    html+="<table><thead><tr><th>Categoria</th><th>Indicador</th><th class='c'>C1</th><th class='c'>C2</th><th class='c'>C3</th><th class='c'>C4</th><th class='c'>Puntaje</th></tr></thead><tbody>"+rows+"</tbody></table>";
-    html+="<div class='totals'>"+th+"</div><div class='bar'><div class='barf'></div></div>";
+  var html = "<!DOCTYPE html><html><head><meta charset='utf-8'><title>Monitoreo - " + col + "</title><style>" + css + "</style></head><body>";
+  html += "<div class='hdr'><div style='display:flex;align-items:center;gap:12px'><span style='font-size:17px;font-weight:800;color:" + P + "'>Jerarquicos Salud</span><span class='pill'>" + canalNombre + "</span></div>";
+  html += "<div class='hdr-r'><div class='ht'>Planilla de monitoreo</div><div class='hs'>Centro de Atencion · " + today + "</div></div></div>";
+  html += "<div class='meta'>";
+  html += "<div class='mf'><label>Colaborador</label><span>" + col + "</span></div>";
+  html += "<div class='mf'><label>Supervisor</label><span>" + sup + "</span></div>";
+  html += "<div class='mf'><label>Fecha</label><span>" + fecha + "</span></div>";
+  html += "<div class='mf'><label>Medio</label><span>" + medio + "</span></div>";
+  html += "<div class='mf' style='grid-column:span 2'><label>Socio / Prestador</label><span>C1:" + sp[0] + " · C2:" + sp[1] + " · C3:" + sp[2] + " · C4:" + sp[3] + "</span></div>";
+  html += "<div class='mf' style='grid-column:span 2'><label>ID de llamada</label><span>C1:" + ids[0] + " · C2:" + ids[1] + " · C3:" + ids[2] + " · C4:" + ids[3] + "</span></div>";
+  html += "</div>";
+
+  if (canal !== "semestral") {
+    html += "<div class='sec'>Indicadores de evaluacion</div>";
+    html += "<table><thead><tr><th>Categoria</th><th>Indicador</th><th class='c'>C1</th><th class='c'>C2</th><th class='c'>C3</th><th class='c'>C4</th><th class='c'>Puntaje</th></tr></thead><tbody>" + rows + "</tbody></table>";
+    html += "<div class='totals'>" + totH + "</div><div class='bar'><div class='barf'></div></div>";
   }
-  html+=condH+rubH;
-  if(fort) html+="<div class='obs'><label>Fortalezas</label><p>"+fort.split("\n").join("<br>")+"</p></div>";
-  if(mej)  html+="<div class='obs'><label>Oportunidades de mejora</label><p>"+mej.split("\n").join("<br>")+"</p></div>";
-  if(obj)  html+="<div class='obs'><label>Objetivos planteados</label><p>"+obj.split("\n").join("<br>")+"</p></div>";
-  if(notaCual){
-    html+="<div style='background:"+ncColor+";border-radius:12px;padding:13px 18px;display:flex;align-items:center;gap:12px;margin-top:4px'>";
-    html+="<span style='font-size:22px'>"+(ncEmojis[notaCual]||"")+"</span>";
-    html+="<div><div style='font-size:8.5px;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:2px'>Evaluacion general</div>";
-    html+="<div style='font-size:18px;font-weight:800;color:white'>"+notaCual+"</div></div></div>";
+
+  html += condH + rubH;
+
+  if (fort) html += "<div class='obs'><label>Fortalezas</label><p>" + fort.split("\n").join("<br>") + "</p></div>";
+  if (mej)  html += "<div class='obs'><label>Oportunidades de mejora</label><p>" + mej.split("\n").join("<br>") + "</p></div>";
+  if (obj)  html += "<div class='obs'><label>Objetivos planteados</label><p>" + obj.split("\n").join("<br>") + "</p></div>";
+
+  if (notaCual) {
+    html += "<div style='background:" + ncColor2 + ";border-radius:12px;padding:13px 18px;display:flex;align-items:center;gap:12px;margin-top:4px'>";
+    html += "<span style='font-size:22px'>" + (ncEmojis[notaCual] || "") + "</span>";
+    html += "<div><div style='font-size:8.5px;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:2px'>Evaluacion general</div>";
+    html += "<div style='font-size:18px;font-weight:800;color:white'>" + notaCual + "</div></div></div>";
   }
-  html+="<div class='footer'><span>Jerarquicos Salud - Mutual del Personal Jerarquico de Bancos Oficiales Nacionales</span><span>Documento interno CAT</span></div>";
-  html+="<scr"+"ipt>window.onload=function(){window.print()}<\/scr"+"ipt></body></html>";
 
-  try{
-    var blob=new Blob([html],{type:"text/html;charset=utf-8"});
-    var url=URL.createObjectURL(blob);
-    var a=document.createElement("a"); a.href=url; a.target="_blank"; a.rel="noopener";
-    document.body.appendChild(a); a.click();
-    setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url);},1000);
-  }catch(e){
-    var w=window.open("","_blank");
-    if(w){w.document.write(html);w.document.close();}
-    else alert("Permitir ventanas emergentes para exportar el PDF.");
-  }
-}
+  html += "<div class='footer'><span>Jerarquicos Salud - Mutual del Personal Jerarquico de Bancos Oficiales Nacionales</span><span>Documento interno CAT</span></div>";
+  html += "<" + "script>window.onload=function(){window.print()}</" + "script></body></html>";
 
-renderAll(CATS["telefonica"]);
-
-if("serviceWorker" in navigator){
-  navigator.serviceWorker.register("/monitoreo-cat/sw.js").then(function(r){r.update();}).catch(function(){});
-}
-</script>
-</body></html>";
-  // Use Blob URL - works on iOS Safari, Android, desktop without popup blocker issues
   try {
-    var blob=new Blob([html],{type:"text/html;charset=utf-8"});
-    var url=URL.createObjectURL(blob);
-    var a=document.createElement("a");
-    a.href=url;
-    a.target="_blank";
-    a.rel="noopener";
+    var blob = new Blob([html], {type: "text/html;charset=utf-8"});
+    var url  = URL.createObjectURL(blob);
+    var a    = document.createElement("a");
+    a.href   = url;
+    a.target = "_blank";
+    a.rel    = "noopener";
     document.body.appendChild(a);
     a.click();
-    setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url);},1000);
+    setTimeout(function() { document.body.removeChild(a); URL.revokeObjectURL(url); }, 1000);
   } catch(e) {
-    // Fallback for older browsers
-    var w=window.open("","_blank");
-    if(w){w.document.write(html);w.document.close();}
-    else alert("Permitir ventanas emergentes para exportar el PDF.");
+    var w = window.open("", "_blank");
+    if (w) { w.document.write(html); w.document.close(); }
+    else   { alert("Permitir ventanas emergentes para exportar el PDF."); }
   }
 }
 
-// v1782301410
-renderAll(CATS["telefonica"]);
-</script>
-<script>
-// Register service worker for cache control
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/monitoreo-cat/sw.js').then(function(reg){
-    reg.update();
-  }).catch(function(){});
-}
+// ── INICIO ─────────────────────────────────────────────────────────────────
+renderIndicadores(CATS["telefonica"]);
 </script>
 </body>
 </html>
