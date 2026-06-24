@@ -424,7 +424,7 @@ function renderAll(cats){
       var sr=document.createElement("div"); sr.className="srow";
       for(var c=1;c<=4;c++){
         var scDiv=document.createElement("div"); scDiv.className="scol";
-        var sl=document.createElement("div"); sl.className="slbl"; sl.textContent="C"+c; sc2.appendChild(sl);
+        var sl=document.createElement("div"); sl.className="slbl"; sl.textContent="C"+c; scDiv.appendChild(sl);
         var msel=makeOpts("sm"+rid+"_"+c);
         (function(r,col){
           msel.onchange=function(){
