@@ -57,6 +57,12 @@ textarea{resize:vertical;min-height:68px;line-height:1.6}
 @media(min-width:700px){input[type=text],input[type=date],textarea{font-size:13px;padding:9px 12px}}
 
 .medio-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px}
+.conv-toggle-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px}
+.conv-tog{padding:8px 16px;font-size:12px;font-family:inherit;font-weight:600;
+  border:1.5px solid #dde0ed;border-radius:20px;background:white;color:#717899;
+  cursor:pointer;-webkit-user-select:none;touch-action:manipulation;position:relative}
+.conv-tog.active{background:#2d2a8a;color:white;border-color:#2d2a8a}
+.conv-tog.inactive{background:#f7f8fc;color:#c4c9de;border-color:#eef0f7;text-decoration:line-through}
 .mbtn{padding:10px 14px;font-size:13px;font-family:inherit;font-weight:600;
   border:1.5px solid #dde0ed;border-radius:20px;background:white;color:#717899;
   cursor:pointer;min-height:44px;-webkit-user-select:none;touch-action:manipulation}
@@ -196,6 +202,15 @@ select.sc{width:58px;text-align:center;padding:5px 2px;font-size:13px;font-famil
     </div>
     <div class="mb10"><span class="flbl">Fecha de devolución</span><input type="date" id="fecha"></div>
     <div class="mb10">
+      <span class="flbl">Conversaciones activas</span>
+      <div class="conv-toggle-row">
+        <span class="conv-tog active" data-conv="1" onclick="toggleConv(this)">Conv. 1</span>
+        <span class="conv-tog active" data-conv="2" onclick="toggleConv(this)">Conv. 2</span>
+        <span class="conv-tog active" data-conv="3" onclick="toggleConv(this)">Conv. 3</span>
+        <span class="conv-tog active" data-conv="4" onclick="toggleConv(this)">Conv. 4</span>
+      </div>
+    </div>
+    <div class="mb10">
       <span class="flbl">Socio / Prestador por conversación</span>
       <div class="r4 mb10">
         <input type="text" id="sp1" placeholder="C1" inputmode="numeric" autocomplete="off">
@@ -305,6 +320,7 @@ select.sc{width:58px;text-align:center;padding:5px 2px;font-size:13px;font-famil
 var CATS = {
   telefonica: [
     {cat:"Protocolo", items:["Bienvenida / Saludo inicial","Cierre / Saludo final","Identifica socio / prestador","Personalizacion","Ofrecimiento de ayuda extra o adicional"]},
+    {cat:"Comunicacion Oral", items:["Escucha activa","Palabras refuerzo positivo","Asertividad","Vocabulario formal y apropiado","Pronunciacion adecuada"]},
     {cat:"Conocimiento", items:["Identifica consulta / reclamo","Indagacion","Uso del sistema","Uso de herramientas de informacion","Brinda informacion precisa y pertinente"]},
     {cat:"Efectividad", items:["Manejo de tiempos","Actualizacion de datos","Manejo de situac. complejas / socios dificiles","Requiere intervencion con otro Dto.","Efectividad de dicha comunicacion","Registro y redaccion de consulta / reclamo"]}
   ],
@@ -349,6 +365,62 @@ var canal = "telefonica";
 var totalRows = 0;
 
 // ── CANAL ──────────────────────────────────────────────────────────────────
+var activeConvs = [1,2,3,4];
+
+function toggleConv(el) {
+  var conv = parseInt(el.getAttribute("data-conv"));
+  if (el.classList.contains("inactive")) {
+    // reactivate
+    el.className = "conv-tog active";
+    if (activeConvs.indexOf(conv) === -1) activeConvs.push(conv);
+    activeConvs.sort();
+  } else {
+    // only deactivate if at least 1 will remain active
+    if (activeConvs.length <= 1) return;
+    el.className = "conv-tog inactive";
+    activeConvs = activeConvs.filter(function(x){ return x !== conv; });
+  }
+  // show/hide columns in mobile cards
+  updateConvVisibility();
+  // hide/show total boxes
+  for (var i = 1; i <= 4; i++) {
+    var el2 = document.getElementById("t" + i);
+    if (el2) el2.closest(".met").style.display = activeConvs.indexOf(i) !== -1 ? "" : "none";
+  }
+  recalc();
+}
+
+function updateConvVisibility() {
+  // mobile: hide inactive scol columns
+  var icards = document.getElementsByClassName("icard");
+  for (var i = 0; i < icards.length; i++) {
+    var scols = icards[i].getElementsByClassName("scol");
+    for (var j = 0; j < scols.length; j++) {
+      var convNum = j + 1;
+      scols[j].style.display = activeConvs.indexOf(convNum) !== -1 ? "" : "none";
+    }
+  }
+  // desktop: hide inactive th and td columns
+  // col indices: 0=cat,1=indicador,2=C1,3=C2,4=C3,5=C4,6=puntaje
+  var ths = document.querySelectorAll("#indCard thead th");
+  for (var i = 0; i < ths.length; i++) {
+    if (i >= 2 && i <= 5) {
+      var convNum = i - 1; // th index 2=C1, 3=C2, 4=C3, 5=C4
+      ths[i].style.display = activeConvs.indexOf(convNum) !== -1 ? "" : "none";
+    }
+  }
+  var trs = document.querySelectorAll("#dtbody tr");
+  for (var r = 0; r < trs.length; r++) {
+    var tds = trs[r].getElementsByTagName("td");
+    for (var i = 0; i < tds.length; i++) {
+      if (i >= 2 && i <= 5) {
+        var convNum = i - 1;
+        tds[i].style.display = activeConvs.indexOf(convNum) !== -1 ? "" : "none";
+      }
+    }
+  }
+}
+
 function cambiarCanal(val) {
   canal = val;
   var tabs = document.getElementsByClassName("ctab");
@@ -362,6 +434,14 @@ function cambiarCanal(val) {
   var rubs = document.getElementsByClassName("sem-rubric");
   for (var i = 0; i < rubs.length; i++) {
     rubs[i].style.display = isSem ? "block" : "none";
+  }
+  // reset conv toggles
+  activeConvs = [1,2,3,4];
+  var togs = document.getElementsByClassName("conv-tog");
+  for (var i = 0; i < togs.length; i++) togs[i].className = "conv-tog active";
+  for (var i = 1; i <= 4; i++) {
+    var tel = document.getElementById("t" + i);
+    if (tel) tel.closest(".met").style.display = "";
   }
   renderIndicadores(CATS[val]);
   if (isSem) { renderConductas(); renderRubrics(); }
@@ -715,6 +795,7 @@ function exportPDF() {
       var scores = [];
       var numVals = [];
       for (var c = 1; c <= 4; c++) {
+        if (activeConvs.indexOf(c) === -1) { scores.push(null); continue; }
         var el = document.getElementById("s" + rid2 + "_" + c);
         var v = el ? el.value : "";
         var disp = (!v || v === "") ? "—" : v === "na" ? "N/A" : v;
@@ -757,6 +838,7 @@ function exportPDF() {
 
   var totH = "";
   for (var i = 0; i < 4; i++) {
+    if (activeConvs.indexOf(i+1) === -1) continue;
     var p = ct[i];
     var cl = p === null ? "#bbb" : p >= 80 ? G : p >= 60 ? A : R;
     totH += "<div class='tot'><label>Conv." + (i+1) + "</label><strong style='color:" + cl + "'>" + (p !== null ? p + "%" : "—") + "</strong></div>";
@@ -855,13 +937,17 @@ function exportPDF() {
   html += "<div class='mf'><label>Supervisor</label><span>" + sup + "</span></div>";
   html += "<div class='mf'><label>Fecha</label><span>" + fecha + "</span></div>";
   html += "<div class='mf'><label>Medio</label><span>" + medio + "</span></div>";
-  html += "<div class='mf' style='grid-column:span 4'><label>Socio / Prestador</label><span>" + sp.map(function(v,i){return"<span style='margin-right:16px'><strong>C"+(i+1)+":</strong> "+v+"</span>";}).join("") + "</span></div>";
-  html += "<div class='mf' style='grid-column:span 4'><label>ID de llamada</label><span>" + ids.map(function(v,i){return"<span style='margin-right:16px'><strong>C"+(i+1)+":</strong> "+v+"</span>";}).join("") + "</span></div>";
+  html += "<div class='mf' style='grid-column:span 4'><label>Socio / Prestador</label><span>" + sp.map(function(v,i){return activeConvs.indexOf(i+1)!==-1?"<span style='margin-right:16px'><strong>C"+(i+1)+":</strong> "+v+"</span>":"";}).join("") + "</span></div>";
+  html += "<div class='mf' style='grid-column:span 4'><label>ID de llamada</label><span>" + ids.map(function(v,i){return activeConvs.indexOf(i+1)!==-1?"<span style='margin-right:16px'><strong>C"+(i+1)+":</strong> "+v+"</span>":"";}).join("") + "</span></div>";
   html += "</div>";
 
   if (canal !== "semestral") {
     html += "<div class='sec'>Indicadores de evaluacion</div>";
-    html += "<table><thead><tr><th>Categoria</th><th>Indicador</th><th class='c'>C1</th><th class='c'>C2</th><th class='c'>C3</th><th class='c'>C4</th><th class='c'>Puntaje</th></tr></thead><tbody>" + rows + "</tbody></table>";
+    var convHeaders = "";
+    for (var ci2 = 1; ci2 <= 4; ci2++) {
+      if (activeConvs.indexOf(ci2) !== -1) convHeaders += "<th class='c'>C" + ci2 + "</th>";
+    }
+    html += "<table><thead><tr><th>Categoria</th><th>Indicador</th>" + convHeaders + "<th class='c'>Puntaje</th></tr></thead><tbody>" + rows + "</tbody></table>";
     html += "<div class='totals'>" + totH + "</div><div class='bar'><div class='barf'></div></div>";
   }
 
