@@ -682,7 +682,13 @@ function exportPDF() {
 
   var col   = document.getElementById("colaborador").value || "(sin datos)";
   var sup   = document.getElementById("supervisor").value  || "(sin datos)";
-  var fecha = document.getElementById("fecha").value       || "(sin datos)";
+  var fechaRaw = document.getElementById("fecha").value || "";
+  var fecha = "(sin datos)";
+  if (fechaRaw) {
+    var fp = fechaRaw.split("-");
+    var meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+    fecha = parseInt(fp[2]) + " de " + meses[parseInt(fp[1])-1] + " de " + fp[0];
+  }
   var sp = [], ids = [];
   for (var i = 1; i <= 4; i++) {
     sp.push(document.getElementById("sp" + i).value || "—");
@@ -723,8 +729,8 @@ function exportPDF() {
       }
       var pc = prom === "—" ? "#bbb" : parseFloat(prom) >= 4 ? G : parseFloat(prom) >= 3 ? A : R;
       rows += "<tr style='background:" + (ii === 0 ? "#f5f4fc" : "white") + "'>";
-      rows += "<td style='padding:6px 8px;border:1px solid #e4e2f5;font-size:9px;font-weight:800;color:" + P + ";text-transform:uppercase'>" + (ii === 0 ? cat.cat : "") + "</td>";
-      rows += "<td style='padding:6px 8px;border:1px solid #e4e2f5;font-size:11px;color:#444;line-height:1.4'>" + cat.items[ii] + "</td>";
+      rows += "<td style='padding:4px 8px;border:1px solid #e4e2f5;font-size:9px;font-weight:800;color:" + P + ";text-transform:uppercase'>" + (ii === 0 ? cat.cat : "") + "</td>";
+      rows += "<td style='padding:4px 8px;border:1px solid #e4e2f5;font-size:10px;color:#444;line-height:1.3'>" + cat.items[ii] + "</td>";
       for (var si = 0; si < scores.length; si++) {
         var sc = scores[si] === "1" ? R : scores[si] === "3" ? A : (scores[si] === "4" || scores[si] === "5") ? G : "#bbb";
         rows += "<td style='padding:6px 8px;border:1px solid #e4e2f5;font-size:12px;text-align:center;font-weight:700;color:" + sc + "'>" + scores[si] + "</td>";
@@ -815,31 +821,31 @@ function exportPDF() {
 
   var css = "";
   css += "*{box-sizing:border-box;margin:0;padding:0}";
-  css += "body{font-family:Arial,sans-serif;color:#1c2040;background:white;padding:24px 28px;font-size:13px}";
-  css += ".hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding-bottom:14px;border-bottom:3px solid " + P + "}";
+  css += "body{font-family:Arial,sans-serif;color:#1c2040;background:white;padding:16px 22px;font-size:12px}";
+  css += ".hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding-bottom:10px;border-bottom:3px solid " + P + "}";
   css += ".pill{background:" + P + ";color:white;font-size:9px;font-weight:700;padding:3px 10px;border-radius:20px}";
   css += ".hdr-r{text-align:right}.ht{font-size:14px;font-weight:800;color:" + P + "}.hs{font-size:10px;color:#9298b5;margin-top:2px}";
-  css += ".meta{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:16px}";
-  css += ".mf{background:#f7f8fc;padding:8px 10px;border-radius:9px;border:1px solid #dde0ed}";
+  css += ".meta{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:12px}";
+  css += ".mf{background:#f7f8fc;padding:6px 10px;border-radius:9px;border:1px solid #dde0ed}";
   css += ".mf label{display:block;color:#9298b5;font-size:8px;font-weight:700;text-transform:uppercase;margin-bottom:2px}";
   css += ".mf span{font-size:11px;font-weight:700;color:#1c2040}";
   css += ".sec{font-size:10px;font-weight:800;color:" + P + ";text-transform:uppercase;margin-bottom:6px;padding-bottom:5px;border-bottom:2px solid " + P + "}";
   css += "table{width:100%;border-collapse:collapse;margin-bottom:16px}";
-  css += "th{background:" + P + ";color:rgba(255,255,255,.92);padding:7px 8px;text-align:left;font-size:8.5px;font-weight:700;text-transform:uppercase}";
+  css += "th{background:" + P + ";color:rgba(255,255,255,.92);padding:5px 8px;text-align:left;font-size:8px;font-weight:700;text-transform:uppercase}";
   css += "th.c{text-align:center;width:50px}";
   css += ".totals{display:flex;gap:7px;margin-bottom:8px}";
-  css += ".tot{background:#f7f8fc;padding:9px 8px;border-radius:9px;flex:1;text-align:center;border:1.5px solid #dde0ed}";
+  css += ".tot{background:#f7f8fc;padding:6px 8px;border-radius:9px;flex:1;text-align:center;border:1.5px solid #dde0ed}";
   css += ".tot label{font-size:8px;color:#9298b5;font-weight:700;text-transform:uppercase;display:block;margin-bottom:3px}";
   css += ".tot strong{font-size:16px;font-weight:700}";
   css += ".tot.nota{background:" + P + ";border-color:" + P + "}";
   css += ".tot.nota label{color:rgba(255,255,255,.6)}.tot.nota strong{color:white;font-size:18px}";
-  css += ".bar{background:#dde0ed;border-radius:4px;height:7px;margin:8px 0 16px}";
+  css += ".bar{background:#dde0ed;border-radius:4px;height:5px;margin:6px 0 10px}";
   css += ".barf{height:7px;border-radius:4px;background:" + nfColor + ";width:" + (nf || 0) + "%}";
-  css += ".obs{background:#f7f8fc;padding:10px 12px;border-radius:9px;margin-bottom:10px;border:1px solid #dde0ed}";
+  css += ".obs{background:#f7f8fc;padding:7px 10px;border-radius:9px;margin-bottom:7px;border:1px solid #dde0ed}";
   css += ".obs label{font-weight:800;font-size:8.5px;text-transform:uppercase;color:#9298b5;display:block;margin-bottom:4px}";
   css += ".obs p{font-size:11.5px;color:#333;line-height:1.65}";
   css += ".footer{margin-top:18px;padding-top:10px;border-top:1px solid #dde0ed;font-size:9px;color:#9298b5;display:flex;justify-content:space-between}";
-  css += "@media print{body{padding:14px 18px}}";
+  css += "@media print{body{padding:12px 16px}@page{margin:10mm;size:A4}}";
 
   var html = "<!DOCTYPE html><html><head><meta charset='utf-8'><title>Monitoreo - " + col + "</title><style>" + css + "</style></head><body>";
   html += "<div class='hdr'><div style='display:flex;align-items:center;gap:12px'><span style='font-size:17px;font-weight:800;color:" + P + "'>Jerarquicos Salud</span><span class='pill'>" + canalNombre + "</span></div>";
@@ -849,8 +855,8 @@ function exportPDF() {
   html += "<div class='mf'><label>Supervisor</label><span>" + sup + "</span></div>";
   html += "<div class='mf'><label>Fecha</label><span>" + fecha + "</span></div>";
   html += "<div class='mf'><label>Medio</label><span>" + medio + "</span></div>";
-  html += "<div class='mf' style='grid-column:span 2'><label>Socio / Prestador</label><span>C1:" + sp[0] + " · C2:" + sp[1] + " · C3:" + sp[2] + " · C4:" + sp[3] + "</span></div>";
-  html += "<div class='mf' style='grid-column:span 2'><label>ID de llamada</label><span>C1:" + ids[0] + " · C2:" + ids[1] + " · C3:" + ids[2] + " · C4:" + ids[3] + "</span></div>";
+  html += "<div class='mf' style='grid-column:span 4'><label>Socio / Prestador</label><span>" + sp.map(function(v,i){return"<span style='margin-right:16px'><strong>C"+(i+1)+":</strong> "+v+"</span>";}).join("") + "</span></div>";
+  html += "<div class='mf' style='grid-column:span 4'><label>ID de llamada</label><span>" + ids.map(function(v,i){return"<span style='margin-right:16px'><strong>C"+(i+1)+":</strong> "+v+"</span>";}).join("") + "</span></div>";
   html += "</div>";
 
   if (canal !== "semestral") {
@@ -869,7 +875,7 @@ function exportPDF() {
     html += "<div style='background:" + ncColor2 + ";border-radius:12px;padding:13px 18px;display:flex;align-items:center;gap:12px;margin-top:4px'>";
     html += "<span style='font-size:22px'>" + (ncEmojis[notaCual] || "") + "</span>";
     html += "<div><div style='font-size:8.5px;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:2px'>Evaluacion general</div>";
-    html += "<div style='font-size:18px;font-weight:800;color:white'>" + notaCual + "</div></div></div>";
+    html += "<div style='font-size:18px;font-weight:800;color:white'>" + notaCual.replace(/[🏆⭐👍⚠️]/g,'').trim() + "</div></div></div>";
   }
 
   html += "<div class='footer'><span>Jerarquicos Salud - Mutual del Personal Jerarquico de Bancos Oficiales Nacionales</span><span>Documento interno CAT</span></div>";
